@@ -1,9 +1,10 @@
-from fastapi import FastAPI
 from http import HTTPStatus
-from fast_zero.schemas import UserPublic, UserSchema
+from fastapi import FastAPI
+from fast_zero.schemas import UserPublic, UserList, UserSchema, UserDB
 
 app = FastAPI()
 
+database = []
 
 #@app.get("/", status_code=HTTPStatus.OK)
 @app.get('/', status_code=200)
@@ -17,3 +18,7 @@ def create_user(user: UserSchema):
     database.append(user_with_id)
 
     return user_with_id
+
+@app.get('/users/', response_model=UserList)
+def read_users():
+    return {'users': database}
