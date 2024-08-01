@@ -14,7 +14,6 @@ app = FastAPI()
 database = []
 
 
-# @app.get("/", status_code=HTTPStatus.OK)
 @app.get('/', status_code=HTTPStatus.OK, response_model=Message)
 def read_root():
     return {'message': 'Olá Mundo!'}
@@ -65,20 +64,20 @@ def read_users(
 
 @app.put('/users/{user_id}', response_model=UserPublic)
 def update_user(
-    user_id: int, user: UserSchema, session: Session = Depends(get_session)
+    user_id: int,
+    user: UserSchema,
+    session: Session = Depends(get_session),
 ):
     db_user = session.scalar(select(User).where(User.id == user_id))
     if not db_user:
         raise HTTPException(
             status_code=HTTPStatus.NOT_FOUND, detail='User not found'
         )
-
     db_user.username = user.username
-    db_user.password = user.password
+    db_user.password = get_password_hash(user.password)
     db_user.email = user.email
     session.commit()
     session.refresh(db_user)
-
     return db_user
 
 
