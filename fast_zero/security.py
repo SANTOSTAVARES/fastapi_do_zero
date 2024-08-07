@@ -8,19 +8,6 @@ from pwdlib import PasswordHash
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from zoneinfo import ZoneInfo
-from datetime import datetime, timedelta
-from http import HTTPStatus
-
-from fastapi import Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
-from jwt import DecodeError, decode, encode
-from pwdlib import PasswordHash
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
-from fast_zero.database import get_session
-from fast_zero.models import User
-from fast_zero.schemas import TokenData
 
 from fast_zero.database import get_session
 from fast_zero.models import User
@@ -80,18 +67,3 @@ def get_current_user(
         raise credentials_exception
 
     return user
-<<<<<<< HEAD
-=======
-
-
-# ...
-
-
-def test_jwt_invalid_token(client):
-    response = client.delete(
-        '/users/1', headers={'Authorization': 'Bearer token-invalido'}
-    )
-
-    assert response.status_code == HTTPStatus.UNAUTHORIZED
-    assert response.json() == {'detail': 'Could not validate credentials'}
->>>>>>> ce03d411bc1d7a8036389fd775c3bee0afca7f95
