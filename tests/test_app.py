@@ -64,6 +64,3 @@ def test_delete_user(client, user, token):
     )
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {'message': 'User deleted'}
-
-
-
