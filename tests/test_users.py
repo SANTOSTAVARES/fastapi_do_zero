@@ -1,6 +1,9 @@
-def test_update_user_with_wrong_user(client, user, token):
+from http import HTTPStatus
+
+
+def test_update_user_with_wrong_user(client, other_user, token):
     response = client.put(
-        f'/users/{user.id}',
+        f'/users/{other_user.id}',
         headers={'Authorization': f'Bearer {token}'},
         json={
             'username': 'bob',
