@@ -13,7 +13,7 @@ from fast_zero.security import (
     create_access_token,
     get_current_user,
     verify_password,
-    )
+)
 
 router = APIRouter(prefix='/auth', tags=['auth'])
 OAuth2Form = Annotated[OAuth2PasswordRequestForm, Depends()]
