@@ -17,6 +17,7 @@ pyjwt = "^2.8.0"
 pwdlib = {extras = ["argon2"], version = "^0.2.0"}
 tzdata = "^2024.1"
 python-multipart = "^0.0.9"
+psycopg = {extras = ["binary"], version = "^3.2.4"}
 
 
 [tool.poetry.group.dev.dependencies]
