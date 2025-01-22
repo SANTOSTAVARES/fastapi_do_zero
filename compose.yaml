@@ -9,7 +9,6 @@ services:
       POSTGRES_PASSWORD: app_password
     ports:
       - "5432:5432"
-
   fastzero_app:
     image: fastzero_app
     entrypoint: ./entrypoint.sh
